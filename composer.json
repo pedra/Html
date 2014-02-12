@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "neos/config": "dev-master"
+        "neos/data": "dev-master"
     },
     "suggest": {
         "neos/start": "Basic starter for PHP web projects"
