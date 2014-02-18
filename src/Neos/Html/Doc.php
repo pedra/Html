@@ -23,7 +23,7 @@ class Doc
   private $content = '';
 
   //Inicializa e carrega o arquivo indicado
-  function __construct($file){
+  function __construct($file = 'layout'){
       $this->file = o::html('path').$file.o::html('ext'); 
       if(file_exists($this->file)) $this->content = file_get_contents($this->file);
   } 
