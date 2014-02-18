@@ -36,9 +36,13 @@ class Doc
   }
 
   //Registra uma variável para o Layout
-  function assign($var, $value) { return $this->setVar($var, $value);}
+  function assign($var, $value = null) { return $this->setVar($var, $value);}
   function setVar($var, $value) {
-     $this->values[$var] = $value;
+    if(is_array($var)){
+      foreach ($var as $k=>$v) {
+        $this->values[$k] = $v;
+      }
+    } else $this->values[$var] = $value;
      return $this;
   }
   
@@ -70,14 +74,20 @@ class Doc
   
   //checa se o arquivo existe e foi carregado (ver __construct)
   function getFile(){
-      return ($this->file != null) ? $this->file : false;
+      return $this->file;
+  }
+
+  function ifContent(){
+    if($this->content == '') return false;
+    return true;
   }
 
   //Processa todo o HTML
   function render($php = true, $blade = true, $zTag = true){
       //Renderiza todas os fragmentos HTML injetados
       foreach($this->views as $view){
-          if($view->getFile()) $view->render($php, $blade, $zTag); //se existir, processa o HTML.
+        //se existir, processa o HTML.
+        if($view->ifContent()) $view->render($php, $blade, $zTag); 
       }
       //Renderizando o Layout
       $this->content = $this->produce($php, $blade, $zTag);
