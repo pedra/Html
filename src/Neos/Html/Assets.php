@@ -34,6 +34,12 @@ class Assets {
             $files[] = trim($i, ' /');
         }
         
+        //add others ...
+        $config = o::get('style');
+        if($config){
+           $files = array_merge($files, $config);
+        }
+        
         $cache = md5(str_replace(array('|','/'), '_', implode('_', $files))).'.cache.css';
 
         //create cache file (if not exists)
@@ -71,6 +77,12 @@ class Assets {
         $tmp = explode(',', ','.trim($ztag['file'], ' /'));
         foreach($tmp as $i){
             $files[] = trim($i, ' /');
+        }
+        
+        //add others ...
+        $config = o::get('script');
+        if($config){
+           $files = array_merge($files, $config);
         }
         
         $cache = md5(str_replace(array('|','/'), '_', implode('_', $files))).'.cache.js';
