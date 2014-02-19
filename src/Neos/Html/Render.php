@@ -11,6 +11,7 @@
  */
 
 namespace Neos\HTML;
+use o;
 
 class Render {
     
