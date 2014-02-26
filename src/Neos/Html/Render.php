@@ -10,7 +10,7 @@
  * @since		0.0.1
  */
 
-namespace Neos\HTML;
+namespace Neos\Html;
 use o;
 
 class Render {
@@ -70,7 +70,7 @@ class Render {
      * @return array|false     array with the data found Ztag or false (not Ztag)
     */
     
-    function zTag(&$arquivo, $ponteiro = -1, $tag = 'z:'){
+    function zTag(&$arquivo, $ponteiro = -1, $tag = 'z:'){ 
         $inicio = strpos($arquivo, '<'.$tag, $ponteiro + 1);
         if($inicio !== false){ 
             //get the type (<z:tipo ... )
@@ -282,7 +282,7 @@ class Render {
      * @param array $ret dados do arquivo CSS vindos da zTag
      * @return boll
     */
-    function _style($ret){
+    function _style($ret){ 
         $ret = $this->clearData($ret);
         
         $as = (is_object($this->assets) ? $this->assets : $this->assets = new Assets());
@@ -350,7 +350,7 @@ class Render {
     final function _plugin($ret){return $this->_module($ret);}
     final function _module($ret){
             if(!isset($ret['name'])) return '';
-            $module = '\\Module\\'.ucfirst($ret['name']).'\\Main';
+            $module = '\\Module\\'.ucfirst($ret['name']);
             $module = new $module($ret);
             return $module->render();
     }
