@@ -270,6 +270,7 @@ class Render {
         
         //Montando a(s) tag
         $tag  = '';
+        if(!is_array($link)) $link = array();
         foreach ($link as $lk){
             $tag .= '<script type="text/javascript" src="'.o::url('script').$lk.'"></script>'."\n";
         }        
@@ -290,6 +291,7 @@ class Render {
         
         //Montando a(s) tag
         $tag  = '';
+        if(!is_array($link)) $link = array();
         foreach ($link as $lk){
             $tag .= '<link href="'.o::url('style').$lk.'"  rel="stylesheet" type="text/css"/>'."\n";
         }        
