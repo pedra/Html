@@ -21,7 +21,7 @@ class Assets {
     
     /* setStyle
      * Modeling the assets output
-     * ZoomTag format: <z:_style file="main, lib/reset" cached="true" />
+     * ZoomTag format: <z::style file="main, lib/reset" cached="true" />
      *
      */
     function setStyle($ztag){
@@ -40,7 +40,7 @@ class Assets {
            $files = array_merge($files, $config);
         }
         
-        $cache = md5(str_replace(array('|','/'), '_', implode('_', $files))).'.cache.css';
+        $cache = md5(implode('_', $files)).'.cache.css';
 
         //create cache file (if not exists)
         if($cached){
@@ -66,7 +66,7 @@ class Assets {
     
     /* setScript
      * Modeling the assets output
-     * ZoomTag format: <z:_script file="main, lib/jquery/jquery-ui" cached="true" />
+     * ZoomTag format: <z::script file="main, lib/jquery/jquery-ui" cached="true" />
      *
      */
     function setScript($ztag){
@@ -85,7 +85,7 @@ class Assets {
            $files = array_merge($files, $config);
         }
         
-        $cache = md5(str_replace(array('|','/'), '_', implode('_', $files))).'.cache.js';
+        $cache = md5(implode('_', $files)).'.cache.js';
 
         //create cache file (if not exists)
         if($cached){
