@@ -84,16 +84,19 @@ class Assets {
         if($config){
            $files = array_merge($files, $config);
         }
+
+        $environment = '/*environment*/ var URL="'.URL.'"; var URL_IMG="'.URL_IMG.'";var URL_AJAX="'.URL_AJAX.'";var URL_SCRIPT="'.URL_SCRIPT.'";var URL_STYLE="'.URL_STYLE.'";'."\n\n";
         
         $cache = md5(implode('_', $files)).'.cache.js';
 
         //create cache file (if not exists)
         if($cached){
             if(!file_exists(o::html('script').$cache) || (time() - filemtime(o::html('script').$cache)) > $this->lifeTime) {          
-                $dt = '';
+                $dt = $environment;
                 foreach ($files as $file) {
                     if(file_exists(o::html('script').$file.'.js'))
-                        $dt .=  preg_replace("#/\*[^*]*\*+(?:[^/*][^*]*\*+)*/#","",
+                        $dt .=  '/* '.$file.'.js */ '.
+                                preg_replace("#/\*[^*]*\*+(?:[^/*][^*]*\*+)*/#","",
                                 preg_replace("/^\s/m",'',
                                 str_replace("\t",'',
                                 file_get_contents(o::html('script').$file.'.js'))))."\n\n";
